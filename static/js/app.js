@@ -22,20 +22,22 @@
   }
 
   function networkFetch() {
-    return flickr.search('rail', {
+    var networkRequest = flickr.search('rail', {
       headers: {}
     });
+
+    networkRequest.then(function(data) {
+      localStorage.setItem('trained-to-thrill', JSON.stringify(data));
+      return data;
+    });
+
+    return networkRequest;
   }
 
   function cachedFetch() {
-    if ('serviceWorker' in navigator && navigator.serviceWorker.active) {
-      return flickr.search('rail', {
-        headers: {'x-use-cache': 'true'}
-      });
-    }
-    else {
-      return Promise.reject(Error("No active serviceWorker"));
-    }
+    return new Promise(function(resolve) {
+      resolve(JSON.parse(localStorage.getItem('trained-to-thrill')));
+    });
   }
 
   function showConnectionError() {
