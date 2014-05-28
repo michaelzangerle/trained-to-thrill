@@ -27,14 +27,14 @@
   }
 
   function getTrainPhotoData() {
-    return flickr.search('rail', {
+    return flickr.search('train diesel', {
       headers: {}
     });
   }
 
   function getCachedTrainPhotoData() {
     if ('serviceWorker' in navigator && navigator.serviceWorker.current) {
-      return flickr.search('rail', {
+      return flickr.search('train diesel', {
         headers: {'x-use-cache': 'true'}
       });
     }
