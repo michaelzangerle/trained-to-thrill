@@ -22,16 +22,21 @@
   }
 
   function networkFetch() {
-    var networkRequest = flickr.search('rail', {
+    var delay = new Promise(function(r) {
+      setTimeout(r, 2000);
+    });
+
+    var networkRequest = flickr.search('train diesel', {
       headers: {}
     });
 
     networkRequest.then(function(data) {
       localStorage.setItem('trained-to-thrill', JSON.stringify(data));
-      return data;
     });
 
-    return networkRequest;
+    return Promise.all([delay, networkRequest]).then(function(r) {
+      return r[1];
+    });
   }
 
   function cachedFetch() {
