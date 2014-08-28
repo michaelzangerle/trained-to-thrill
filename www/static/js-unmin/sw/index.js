@@ -1,7 +1,7 @@
-self.addEventListener('fetch', function(event) {
-  var requestURL = new URL(event.request.url);
-
-  if (/\.staticflickr\.com$/.test(requestURL.hostname)) {
-    event.respondWith(fetch('../imgs/thomas.jpg'));
-  }
+this.addEventListener('fetch', function(event) {
+  event.respondWith(
+    new Response('<h1>Sorry</h1> No trains today', {
+      headers: {'Content-Type': 'text/html'}
+    })
+  );
 });
