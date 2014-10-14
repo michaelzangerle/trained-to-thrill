@@ -45,7 +45,7 @@ self.onfetch = function(event) {
   if (requestURL.hostname == 'api.flickr.com') {
     event.respondWith(flickrAPIResponse(event.request));
   }
-  else if (/\.staticflickr\.com$/.test(requestURL.hostname)) {
+  else if (requestURL.hostname == 'trained-to-thrill-proxy.appspot.com') {
     event.respondWith(flickrImageResponse(event.request));
   }
   else {
@@ -73,7 +73,7 @@ function flickrAPIResponse(request) {
           var imgCache = results[1];
 
           var imgURLs = data.photos.photo.map(function(photo) {
-            return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_c.jpg';
+            return 'https://trained-to-thrill-proxy.appspot.com/farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_c.jpg';
           });
 
           // if an item in the cache *isn't* in imgURLs, delete it

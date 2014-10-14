@@ -28,7 +28,7 @@ function search(text, opts) {
         id: photo.id,
         title: photo.title,
         flickrUrl: 'https://www.flickr.com/photos/' + photo.owner + '/' + photo.id + '/',
-        imgUrl: 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_c.jpg',
+        imgUrl: 'https://trained-to-thrill-proxy.appspot.com/farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_c.jpg',
         description: photo.description._content.trim()
       };
     });
