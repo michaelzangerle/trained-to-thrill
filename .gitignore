@@ -5,3 +5,4 @@ www/sw.js
 www/static/css/
 www/static/css/
 .idea/
+npm-debug.log
