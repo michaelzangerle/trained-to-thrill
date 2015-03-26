@@ -4,3 +4,4 @@ www/sw.js
 .sass-cache
 www/static/css/
 www/static/css/
+.idea/
