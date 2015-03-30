@@ -1,5 +1,11 @@
 var Promise = require('es6-promise').Promise;
 
+/**
+ * Makes an ajax request
+ * @param url to make the request to
+ * @param opts options for the request
+ * @returns {Promise}
+ */
 function request(url, opts) {
   // Return a new promise.
   return new Promise(function(resolve, reject) {
@@ -41,6 +47,12 @@ function request(url, opts) {
   });
 }
 
+/**
+ * Merge an object with some defaults
+ * @param opts
+ * @param defaultOpts
+ * @returns {Object}
+ */
 function defaults(opts, defaultOpts) {
   var r = Object.create(defaultOpts);
 
@@ -53,6 +65,11 @@ function defaults(opts, defaultOpts) {
   return r;
 }
 
+/**
+ * Concats all properties of an object for an url
+ * @param obj
+ * @returns {string}
+ */
 function toQuerystring(obj) {
   var str = [];
   for (var p in obj)
@@ -73,7 +90,6 @@ var strToEls = (function () {
     return r;
   };
 }());
-
 
 module.exports = {
   request: request,

@@ -1,8 +1,15 @@
 var caches = require('../libs/caches');
 
+/**
+ * Install service worker
+ * @param event
+ */
 self.oninstall = function(event) {
+    // sw will be treated as installed when all code in waitUntil is processes
   event.waitUntil(
+      // create / open cache with specific key
     caches.open('trains-static-v14').then(function(cache) {
+        // add all resources with following url
       return cache.addAll([
         '/trained-to-thrill/',
         '/trained-to-thrill/static/css/all.css',
@@ -20,6 +27,10 @@ var expectedCaches = [
   'trains-data'
 ];
 
+/**
+ * Will be useful when updating sw - removes old caches
+ * @param event
+ */
 self.onactivate = function(event) {
   // remove caches beginning "trains-" that aren't in
   // expectedCaches
@@ -39,6 +50,10 @@ self.onactivate = function(event) {
   );
 };
 
+/**
+ * Handles requests by directing them to the in  ternet or the cache
+ * @param event
+ */
 self.onfetch = function(event) {
   var requestURL = new URL(event.request.url);
 
