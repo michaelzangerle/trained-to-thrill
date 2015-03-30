@@ -72,6 +72,14 @@ self.onfetch = function(event) {
   }
 };
 
+/**
+ * Returns a response on a request to the flickr api
+ * The request will be used to determine which images can be
+ * deleted from the cache safely and the response to the request
+ * will be added to the cache
+ * @param request
+ * @returns {*}
+ */
 function flickrAPIResponse(request) {
   if (request.headers.get('Accept') == 'x-cache/only') {
     return caches.match(request);
@@ -113,6 +121,13 @@ function flickrAPIResponse(request) {
   }
 }
 
+/**
+ * Request for actual images which will look for a request match in the cache
+ * and return the cache if it exists or triggers a fetch for this request. The
+ * response of the request will be added to the cache.
+ * @param request
+ * @returns {Promise}
+ */
 function flickrImageResponse(request) {
   return caches.match(request).then(function(response) {
     if (response) {
